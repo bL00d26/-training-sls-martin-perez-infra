@@ -8,7 +8,11 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "bootstrap":"cdk bootstrap --profile alegra-training",
+    "diff":"cdk diff --profile alegra-training",
+    "deploy":"cdk deploy --profile alegra-training",
+    "destroy":"cdk destroy --profile alegra-training"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",
