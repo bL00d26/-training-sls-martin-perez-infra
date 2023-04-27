@@ -9,10 +9,10 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "bootstrap":"cdk bootstrap --profile alegra-training",
-    "diff":"cdk diff --profile alegra-training",
-    "deploy":"cdk deploy --profile alegra-training",
-    "destroy":"cdk destroy --profile alegra-training"
+    "bootstrap":"cdk bootstrap --env=dev --profile alegra-training --all",
+    "diff":"cdk diff --env=dev --profile alegra-training --all",
+    "deploy":"cdk deploy --env=dev --profile alegra-training --all",
+    "destroy":"cdk destroy --env=dev --profile alegra-training --all"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",
