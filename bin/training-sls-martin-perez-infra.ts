@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { AppStack } from '../lib/app-stack';
 import { getStackNameWithPrefix } from '../utils';
 import { DomainStack } from '../lib/domain-stack';
 import { ApiGatewayStack } from '../lib/apigateway-stack';
 import { S3Stack } from '../lib/s3-stack';
+import { SnsStack } from '../lib/sns-stack';
 
 const app = new cdk.App();
-const appName = 'training-martin';
 const sharedProps = {
   env: 'dev',
   account: '175749225105',
@@ -32,9 +31,13 @@ const s3Stack = new S3Stack(app, 'S3Stack', {
   ...sharedProps,
   name: getStackNameWithPrefix('s3')
 });
-apiGatewayStack.addDependency(domainStack);
+const snsStack = new SnsStack(app, 'SnsStack', {
+  ...sharedProps,
+  name: getStackNameWithPrefix('sns'),
+  stacks: {
+    s3: s3Stack
+  }
+});
 
-// new AppStack(app, 'AppStack', {
-//   ...sharedProps,
-//   stackName: `${appName}-training`
-// });
+apiGatewayStack.addDependency(domainStack);
+snsStack.addDependency(s3Stack);
