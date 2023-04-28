@@ -75,12 +75,12 @@ export class ApiGatewayStack extends cdk.Stack {
   private createHttpAuthorizer(props: ApiGatewayStackProps) {
     this.httpAuthorizer = new apigatewayv2.CfnAuthorizer(
       this,
-      'ThumbnailsAuthorizer',
+      'ApiTrainingAuthorizer',
       {
         apiId: this.httpApi.ref,
         identitySource: ['$request.header.Authorization'],
         authorizerType: 'REQUEST',
-        name: 'authorizationAuthorizer',
+        name: 'apiTrainingAuthorizer',
         authorizerUri: `arn:aws:apigateway:${
           props.region
         }:lambda:path/2015-03-31/functions/${getAuthorizerArn(
@@ -94,7 +94,7 @@ export class ApiGatewayStack extends cdk.Stack {
 
     new cdk.CfnOutput(this, 'OutputHttpAuthorizerId', {
       value: this.httpAuthorizer.ref,
-      exportName: getResourceNameWithPrefix(`authorizer-id-${props.env}`)
+      exportName: 'api-authorizer-id'
     });
   }
 }

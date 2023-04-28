@@ -16,5 +16,5 @@ export function getStackNameWithPrefix(resourceName: string) {
 }
 
 export function getAuthorizerArn(env: string): string {
-  return 'arn:aws:lambda:us-east-1:175749225105:function:training-sls-back-dev-authorizer';
+  return 'arn:aws:lambda:us-east-1:175749225105:function:training-sls-back-dev-authorizerFunc';
 }
